@@ -6,7 +6,8 @@ import 'package:grocery_app/repository/product_repo.dart';
 import 'package:grocery_app/views/screens/search/search_screen.dart';
 
 void main() {
-  runApp(MultiBlocProvider(
+  runApp(
+    MultiBlocProvider(
     providers: [
       BlocProvider(
         create: (_) => ProductBloc(ProductRepo()),
@@ -14,7 +15,6 @@ void main() {
       BlocProvider(
         create: (_) => ProductDetailsBloc(ProductRepo()),
       ),
-      
     ],
     child: const MyApp(),
   ));

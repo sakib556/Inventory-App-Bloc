@@ -6,6 +6,7 @@ import 'package:grocery_app/model/product.dart';
 import 'package:grocery_app/constant/my_colors.dart';
 import 'package:grocery_app/constant/my_pictures.dart';
 import 'package:grocery_app/views/custom_widgets/search_box.dart';
+import 'package:grocery_app/views/screens/payment/payment_screen.dart';
 import 'package:grocery_app/views/screens/product_details/components/image_slider.dart';
 import 'package:grocery_app/views/screens/product_details/components/text_with_title.dart';
 import 'package:grocery_app/views/screens/product_details/components/text_with_title_row.dart';
@@ -82,7 +83,7 @@ class ProductDetails extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    _title(),
+                    _title(context),
                     const SizedBox(
                       height: 20,
                     ),
@@ -128,18 +129,28 @@ class ProductDetails extends StatelessWidget {
     );
   }
 
-  Widget _title() {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Text(
-        product.productName,
-        maxLines: 2,
-        style: const TextStyle(
-            overflow: TextOverflow.ellipsis,
-            color: MyColors.deep,
-            fontSize: 24,
-            fontWeight: FontWeight.w600),
-      ),
+  Widget _title(BuildContext context) {
+    return Column(
+      children: [
+        Align(
+            alignment: Alignment.centerLeft,
+            child: ElevatedButton(
+                onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: ((context) => const PaymentScreen()))),
+                child: const Text("Go to Payment"))),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            product.productName,
+            maxLines: 2,
+            style: const TextStyle(
+                overflow: TextOverflow.ellipsis,
+                color: MyColors.deep,
+                fontSize: 24,
+                fontWeight: FontWeight.w600),
+          ),
+        ),
+      ],
     );
   }
 
