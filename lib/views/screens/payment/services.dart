@@ -18,7 +18,7 @@ class SSLcommerzPaymentService{
   static Future<void> makePayment(BuildContext context) async {
     Sslcommerz sslCommerce = Sslcommerz(
       initializer: SSLCommerzInitialization(
-        multi_card_name: formData['multicard'],
+        multi_card_name:'visa,master,bkash',
         currency: SSLCurrencyType.BDT,
         product_category: "Products",
         // ipn_url: "your_ipn_url",
@@ -82,8 +82,10 @@ class SSLcommerzPaymentService{
       ),
     );
     var result = await sslCommerce.payNow();
+    //log('ssl Result ====>${result.aPIConnect}');
 
-    log('ssl Result ====>$result');
+    print('ssl Result ====>${result.aPIConnect}');
+
     if (result is PlatformException) {
       print("the response is: ${result.status}");
       if (!context.mounted) return;
